@@ -1,0 +1,221 @@
+import React, { useEffect, useState, useMemo } from "react";
+import axios from "axios";
+import { useTable } from "react-table";
+// import { COLUMNS } from "./columns";
+import "./assets/BasicTable.css";
+
+const BasicTable = () => {
+
+    const columns = useMemo(
+        () => [
+            {
+                Header:'ID',
+                accesor:'id'
+            },
+            {
+                Header:'Title',
+                accesor:'title'
+            },
+            {
+                Header:'Description',
+                accesor:'description'
+            },
+            {
+                Header:'Price',
+                accesor:'price'
+            },
+            {
+                Header:'Category',
+                accesor:'category'
+            },
+            {
+                Header:'Sold',
+                accesor:'sold'
+            },
+            {
+                Header:'Image',
+                accesor:'image'
+            },
+        ],
+        []
+      );
+
+
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/product/productTransactions",
+          {
+            params: {
+              page: 1,
+              limit: 10,
+              search: " ",
+            },
+          }
+        );
+
+        setTransactions(response.data.transactions);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+//   const columns = useMemo(() => COLUMNS, []);
+  const data = useMemo(() => transactions, [transactions]);
+  console.log("data=>>>", data);
+  const {
+    getTableProps, // table props from react-table
+    getTableBodyProps, // table body props from react-table
+    headerGroups, // headerGroups, if your table has groupings
+    rows, // rows for the table based on the data passed
+    prepareRow // Prepare the row (this function needs to be called for each row before getting the row props)
+  } = useTable({
+    columns,
+    data
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+//   const { getTableProps, getTableBodyProps, headerGroups,rows, prepareRow } =
+//     tableInstance;
+  //const{rows}=tableInstance.data
+//   console.log(">>", rows, tableInstance);
+
+  return (
+    <table {...getTableProps()}>
+    <thead>
+      {headerGroups.map(headerGroup => (
+        <tr {...headerGroup.getHeaderGroupProps()}>
+          {headerGroup.headers.map(column => (
+            <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+          ))}
+        </tr>
+      ))}
+    </thead>
+    <tbody {...getTableBodyProps()}>
+      {rows.map((row, i) => {
+        prepareRow(row);
+        return (
+          <tr {...row.getRowProps()}>
+            {row.cells.map(cell => {
+              return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+            })}
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+
+     
+    // </table>
+  );
+};
+
+export default BasicTable;
+
+{
+  /* <div>
+<h1>Product Transactions</h1>
+<ul>
+  {transactions.map((transaction) => (
+    <li key={transaction.id}>
+      {/* Render your transaction data here */
+}
+//   {transaction.title} - {transaction.price}
+// </li>
+//   ))}
+// </ul>
+// </div> */}
+
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
+
+function BarChart() {
+
+    const [data, setData] = useState([]);
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://localhost:3000/api/product/barChartsInfo?month=');
+          const result = await response.json();
+          setData(result.result);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+    data.sort((a, b) => {
+      
+        const rangeA = a._id.split('-').map(Number);
+        const rangeB = b._id.split('-').map(Number);
+      
+        return rangeA[0] - rangeB[0];
+      });
+    const chartData = {
+        labels: data.map((d) => d._id),
+        datasets: [
+          {
+            label: 'Range',
+            data: data.map((item) => item.count),
+          },
+        ],
+      };
+   data.forEach(element => {
+    console.log(element._id,"===>",element.count);
+   });
+
+
+   return (
+   <Bar data={chartData} />
+   );
+}
+
+export default BarChart;
+
+
+
+<div className="slider"></div>
+          <Link to="/">
+          <label htmlFor="home" className="home"><i className="fa fa-home"></i>Home</label>
+          </Link>
+          
+          <Link to="/barchart">
+          <label htmlFor="blog" className="blog"><i className="fa fa-minus-circle"></i>Blog</label>
+          </Link>
+          
+          <Link to="/piechart">
+          <label htmlFor="code" className="code"><i className="fa fa-code"></i>Code</label>
+          </Link>
+
+          {/* <label htmlFor="help" className="help"><i className="fa fa-envelope"></i>Help</label>
+          <label htmlFor="about" className="about"><i className="fa fa-user"></i>About</label>  */}

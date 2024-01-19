@@ -1,0 +1,80 @@
+const mongoose = require('mongoose');
+const product = require('../models/product');
+
+const calculateSalesInfo = async (req, res) => {
+  try {
+    const { month } = req.query;
+
+    // if (!month) {
+    //   return res.status(400).json({ success: false, message: 'Month parameter is required.' });
+    // }
+
+    if (!month) {
+      const soldCount = await product.countDocuments({
+        sold:  true,
+      });
+  
+      const unSoldCount = await product.countDocuments({
+        sold:  false,
+      });
+      
+      
+  
+      const result = await product.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalSalesAmount: { $sum: '$price' },
+          },
+        },
+      ]);
+      if (result.length > 0) {
+        res.status(200).json({ success: true, totalSales: result[0].totalSalesAmount, soldCount, unSoldCount });
+      } else {
+        res.status(404).json({ success: false, message: 'No data found for the specified month.' });
+      }
+
+    } else {
+      const soldCount = await product.countDocuments({
+        sold:  true,
+        month:{ $regex: month, $options: "i" }
+      });
+  
+      const unSoldCount = await product.countDocuments({
+        sold:  false,
+        month:{ $regex: month, $options: "i" }
+      });
+      
+      
+  
+      const result = await product.aggregate([
+        {
+          $match: {
+            month:{ $regex: month, $options: "i" },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalSalesAmount: { $sum: '$price' },
+          },
+        },
+      ]);
+      
+  
+      if (result.length > 0) {
+        res.status(200).json({ success: true, totalSales: result[0].totalSalesAmount, soldCount, unSoldCount });
+      } else {
+        res.status(404).json({ success: false, message: 'No data found for the specified month.' });
+      }
+    }
+
+   
+    
+  } catch (error) {
+    console.error('Error calculating sales information:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
+
+module.exports = calculateSalesInfo;

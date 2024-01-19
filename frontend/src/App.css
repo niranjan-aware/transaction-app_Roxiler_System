@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Popins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    background-color: rgb(243, 242, 243);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Set the width to 100% */
+}
+
+.navbar .search-dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.navbar input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.navbar label {
+    margin-right: 10px;
+}
+
+/* Move the select month dropdown to the right */
+.navbar .select-month-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+nav {
+    width: 600px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.426);
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.nav-link {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.nav-link label {
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(142, 68, 168);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+label {
+    height: 100%;
+    width: 100%;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(142, 68, 168);
+    border-radius: 5px;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.nav-link label:hover {
+    background-color: rgba(141, 68, 168, 0.132);
+}
+
+i {
+    color: rgb(142, 68, 168);
+}
+
+nav label i {
+    margin-right: 4px;
+}
+
+.slider {
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    background-color: rgb(142, 68, 168);
+    border-radius: 5px;
+    z-index: 0;
+}
+
+#home:checked~nav label.home,
+#blog:checked~nav label.blog,
+#code:checked~nav label.code,
+#help:checked~nav label.help,
+#about:checked~nav label.about {
+    color: white;
+}
+
+#home:checked~nav label.home i,
+#blog:checked~nav label.blog i,
+#code:checked~nav label.code i,
+#help:checked~nav label.help i,
+#about:checked~nav label.about i {
+    color: white;
+}
+
+#home:checked~.slider {
+    left: 0;
+}
+
+#blog:checked~.slider {
+    left: 20%;
+}
+
+#code:checked~.slider {
+    left: 40%;
+}
+
+#help:checked~.slider {
+    left: 60%;
+}
+
+#about:checked~.slider {
+    left: 80%;
+}
+
+input[type="radio"] {
+    display: none;
+}
