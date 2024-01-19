@@ -46,7 +46,6 @@ body {
     margin-right: 10px;
 }
 
-/* Move the select month dropdown to the right */
 .navbar .select-month-container {
     display: flex;
     align-items: center;

@@ -24,7 +24,6 @@
     }
 }
 
-/* Media query for screens with a maximum width of 480px */
 @media only screen and (max-width: 480px) {
     .bar-chart {
         left: 5%; 

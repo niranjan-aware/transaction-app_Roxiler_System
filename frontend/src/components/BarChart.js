@@ -16,7 +16,7 @@ function BarChart(props) {
             "http://localhost:3000/api/product/barChartsInfo",
             {
               params: {
-                month: props.selectedMonth, // Adjusted from search to month
+                month: props.selectedMonth,
               },
             }
           );

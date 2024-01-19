@@ -26,7 +26,6 @@ function App() {
     setSearchQuery("");
     setSelectedMonth("");
 
-    // If on the Transactions page, reload to clear filters
     if (location.pathname === "/") {
       navigate("/", { replace: true });
     }
@@ -34,7 +33,7 @@ function App() {
 
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.target.blur(); // Remove focus on Enter key press
+      e.target.blur(); 
     }
   };
 

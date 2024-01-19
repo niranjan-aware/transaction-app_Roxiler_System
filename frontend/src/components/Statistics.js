@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './assets/Statistics.css'; // Create this CSS file for styling
+import './assets/Statistics.css'; 
 
 const Statistics = (props) => {
   const [salesInfo, setSalesInfo] = useState(null);

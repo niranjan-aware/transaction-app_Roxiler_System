@@ -19,7 +19,7 @@ function PieChart(props) {
           }
         );
         const result = response.data;
-        setData(result.pieChartData); // Access the correct property in the response
+        setData(result.pieChartData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -28,7 +28,6 @@ function PieChart(props) {
     fetchData();
   }, [props.selectedMonth]);
 
-  // No need to sort data for a Pie chart
 
   const chartData = {
     labels: data.map((d) => d.category),

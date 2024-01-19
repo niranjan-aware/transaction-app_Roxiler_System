@@ -19,20 +19,19 @@ table {
 }
 
 th, td {
-  border: 1px solid #3498db; /* Match border color with the container */
-  padding: 12px; /* Increase padding for better spacing */
+  border: 1px solid #3498db;
+  padding: 12px; 
   text-align: left;
 }
 
 th {
-  background-color: #2980b9; /* Change background color for header */
-  color: #fff; /* Set text color to white */
+  background-color: #2980b9;
+  color: #fff; 
 }
 
-/* Optional: Add hover effect to table rows for better interactivity */
 
 tr:hover {
-  background-color: #b4cbe4; /* Lighter background color on hover */
+  background-color: #b4cbe4; 
   transition: background-color 0.3s ease-in-out;
 }
 

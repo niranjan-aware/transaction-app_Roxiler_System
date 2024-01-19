@@ -1,21 +1,16 @@
-/* Update your .table-parent class */
-.table-parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Update your .pagination-table class */
- /* Add these styles to your existing CSS */
 
-/* Update your .table-parent class */
 .table-parent {
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* Update your .pagination-table class */
+.table-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   .pagination-table {
     font-family: 'Popins', sans-serif;
     border-collapse: collapse;
@@ -27,11 +22,11 @@
   .pagination-table th {
     border: 1px solid #3498db;
     text-align: left;
-    padding: 12px; /* Increase padding for better spacing */
+    padding: 12px;
   }
   
   .pagination-table tr:nth-child(even) {
-    background-color: #ecf0f1; /* Set background color to a light shade */
+    background-color: #ecf0f1; 
   }
   
   .pagination-table th {
@@ -51,7 +46,6 @@
   .heading:hover
   
   
-  /* Additional styles for your heading */
   .heading {
     position: absolute;
     top: 140px;
@@ -66,7 +60,6 @@
   border: none;
   }
 
-  /* Additional styles for your pagination controls and information */
 .pagination-controls {
     display: flex;
     justify-content: space-evenly;
