@@ -44,12 +44,13 @@ function App() {
         <div className="search-dropdown-container">
           {location.pathname === "/" && (
             <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              onKeyDown={handleInputKeyDown}
-            />
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={handleInputKeyDown}
+            className="search-input"
+          />
           )}
           <label htmlFor="monthDropdown" className="select-month-label">
             Select Month:&nbsp;
@@ -77,31 +78,18 @@ function App() {
         </div>
 
         <nav>
-          <div className="slider"></div>
 
           <Link to="/" className="nav-link">
-            <input type="radio" name="slider" id="home" />
-            <label htmlFor="home" className="home">
-              Transactions
-            </label>
+            <button className="nav-btn">Transactions</button>
           </Link>
           <Link to="/barchart" className="nav-link">
-            <input type="radio" name="slider" id="blog" />
-            <label htmlFor="blog" className="blog">
-              barchart
-            </label>
+          <button className="nav-btn">Sales</button>
           </Link>
           <Link to="/piechart" className="nav-link">
-            <input type="radio" name="slider" id="code" />
-            <label htmlFor="code" className="code">
-              piechart
-            </label>
+          <button className="nav-btn">PieChart</button>
           </Link>
           <Link to="/statistics" className="nav-link">
-            <input type="radio" name="slider" id="help" />
-            <label htmlFor="help" className="help">
-              Stats
-            </label>
+          <button className="nav-btn">SalesStats</button>
           </Link>
         </nav>
       </div>

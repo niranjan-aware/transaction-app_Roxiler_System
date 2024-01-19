@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
+import './assets/PieChart.css'
 
 function PieChart(props) {
   const [data, setData] = useState([]);
@@ -46,11 +47,23 @@ function PieChart(props) {
       },
     ],
   };
-
+  const renderHeading = () => {
+    if (props.selectedMonth.length>0) {
+      return `Sales During ${props.selectedMonth}`;
+    } else {
+      return 'Sales During Whole Year';
+    }
+  };
   return (
-    <div style={{ width: 700 }}>
+    <>
+   
+    <div className="pie-chart">
+    <div className="pie-heading">
+        <h2>{renderHeading()}</h2>
+      </div>
       <Pie data={chartData} />
     </div>
+    </>
   );
 }
 

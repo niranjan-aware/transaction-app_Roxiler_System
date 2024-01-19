@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Popins', sans-serif;
+}
+
+.pie-chart{
+    position: absolute;
+    top: 12%;
+    left: 30%;
+    border: 2px solid black;
+    padding: 20px;
+    width: 600px;
+    height: 600px;
+    padding-top: 50px;
+}
+
+.pie-heading{
+    position: absolute;
+    top: 15px;
+    left: 30%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 10px ;
+}

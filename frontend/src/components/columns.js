@@ -35,6 +35,6 @@ export const COLUMNS=[
         Header: 'Image',
         Footer: 'Image',
         accessor: 'image',
-        Cell: ({ value }) => <img src={value} alt="" style={{ width: '50px', height: '50px' }} />,
+        Cell: ({ value }) => <img src={value} alt="" style={{ width: '50px', height: '50px',borderRadius:'10px' }} />,
       },
 ]

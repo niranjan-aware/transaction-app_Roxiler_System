@@ -4,12 +4,19 @@
     font-family: 'Popins', sans-serif;
 }
 
+:root {
+    --gradient: linear-gradient(45deg,
+            #845ec2,
+            #d65db1,
+            #ff6f91,
+            #ff9671,
+            #ffc75f,
+            #f9f871);
+}
+
 body {
     height: 100vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
     background-color: rgb(243, 242, 243);
 }
 
@@ -20,7 +27,9 @@ body {
     background-color: #fff;
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Set the width to 100% */
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 
 .navbar .search-dropdown-container {
@@ -50,101 +59,108 @@ nav {
     background-color: white;
     display: flex;
     border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.426);
     align-items: center;
     text-align: center;
     position: relative;
+    justify-content: space-evenly;
+    right: 50px;
 }
 
-.nav-link {
-    flex: 1;
-    text-align: center;
-    position: relative;
+@keyframes btn-animation {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
 }
 
-.nav-link label {
-    height: 60px;
-    line-height: 60px;
-    font-size: 20px;
-    font-weight: 700;
-    color: rgb(142, 68, 168);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-label {
-    height: 100%;
-    width: 100%;
-    line-height: 60px;
-    font-size: 20px;
-    font-weight: 700;
-    color: rgb(142, 68, 168);
-    border-radius: 5px;
+.nav-btn {
     border: none;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 1;
-}
-
-.nav-link label:hover {
-    background-color: rgba(141, 68, 168, 0.132);
-}
-
-i {
-    color: rgb(142, 68, 168);
-}
-
-nav label i {
-    margin-right: 4px;
-}
-
-.slider {
-    position: absolute;
-    height: 100%;
-    width: 20%;
     background-color: rgb(142, 68, 168);
-    border-radius: 5px;
-    z-index: 0;
-}
-
-#home:checked~nav label.home,
-#blog:checked~nav label.blog,
-#code:checked~nav label.code,
-#help:checked~nav label.help,
-#about:checked~nav label.about {
     color: white;
+    padding: 8px 1px;
+    border-radius: 4px;
+    width: 105px;
+    font-size: 16px;
+    /* font-weight: 600; */
+    transition: transform 1s;
 }
 
-#home:checked~nav label.home i,
-#blog:checked~nav label.blog i,
-#code:checked~nav label.code i,
-#help:checked~nav label.help i,
-#about:checked~nav label.about i {
-    color: white;
+.nav-btn:hover {
+    cursor: pointer;
+    background-image: var(--gradient);
+    transform: translate3d(3px, 3px, 3px);
+    animation: btn-animation 5s 2 infinite;
+
 }
 
-#home:checked~.slider {
-    left: 0;
+.select-month-label {
+    display: flex;
+    align-items: center;
 }
 
-#blog:checked~.slider {
-    left: 20%;
+.select-month-label select {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #3498db;
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-#code:checked~.slider {
-    left: 40%;
+.select-month-label select:hover {
+    border-color: #2980b9;
 }
 
-#help:checked~.slider {
-    left: 60%;
+.select-month-label select:focus {
+    outline: none;
+    border-color: #2980b9;
+    color: #2980b9;
 }
 
-#about:checked~.slider {
-    left: 80%;
+.select-month-label button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 130px;
+    transition: background-color 0.3s ease;
 }
 
-input[type="radio"] {
-    display: none;
+.select-month-label button:hover {
+    background-color: #27ae60;
 }
+
+
+.search-input {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #e74c3c;
+    border-radius: 4px;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #c0392b;
+  }
+  
+  .search-input::placeholder {
+    color: #bdc3c7;
+  }
+  
+  .search-input:hover::placeholder,
+  .search-input:focus::placeholder {
+    color: #7f8c8d;
+  }
+  

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import axios from "axios";
+import './assets/BarChart.css'
+
 
 function BarChart(props) {
 
@@ -58,11 +60,25 @@ function BarChart(props) {
 //     console.log(element._id,"===>",element.count);
 //    });
 
+const renderHeading = () => {
+  if (props.selectedMonth.length>0) {
+    return `Sales During ${props.selectedMonth}`;
+  } else {
+    return 'Sales During Whole Year';
+  }
+};
+
 
    return (
-    <div style={{ width: 700 }}>
+    <>
+    <div className="heading">
+        <h2>{renderHeading()}</h2>
+      </div>
+    <div className="bar-chart" style={{ width: 700 }}>
+      
    <Bar data={chartData} />
    </div>
+   </>
    );
 }
 

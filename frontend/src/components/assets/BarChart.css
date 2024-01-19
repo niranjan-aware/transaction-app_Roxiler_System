@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Popins', sans-serif;
+}
+
+.bar-chart{
+    position: absolute;
+    top: 20%;
+    left: 22%;
+    border: 2px solid black;
+    padding: 100px;
+}
+
+.heading{
+    position: absolute;
+    top: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .bar-chart {
+        left: 10%;
+        padding: 50px; 
+    }
+}
+
+/* Media query for screens with a maximum width of 480px */
+@media only screen and (max-width: 480px) {
+    .bar-chart {
+        left: 5%; 
+        padding: 20px; 
+    }
+}
