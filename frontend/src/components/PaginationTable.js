@@ -1,3 +1,5 @@
+// Import statements (if any)
+
 import React, { useEffect, useState, useMemo, Fragment } from "react";
 import axios from "axios";
 import { useTable, usePagination } from "react-table";
@@ -37,7 +39,7 @@ const PaginationTable = (props) => {
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => transactions, [transactions]);
-  // console.log("data=>>>", data);
+
   const tableInstance = useTable(
     {
       columns,
@@ -75,14 +77,12 @@ const PaginationTable = (props) => {
   }
 
   const renderHeading = () => {
-    if (props.selectedMonth.length>0) {
+    if (props.selectedMonth.length > 0) {
       return `Sales During ${props.selectedMonth}`;
     } else {
-      return 'Sales During Whole Year';
+      return "Sales During Whole Year";
     }
   };
-  //const{rows}=tableInstance.data
-  //   console.log(">>", rows, tableInstance);
 
   return (
     <Fragment>
@@ -93,7 +93,6 @@ const PaginationTable = (props) => {
         <h2>{renderHeading()}</h2>
       </div>
       <div className="table-parent">
-      
         <table className="pagination-table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -112,18 +111,14 @@ const PaginationTable = (props) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    // console.log("cell==>>",cell);
-                    // console.log("cell==>>",cell.render('Cell'));
-
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                  {row.cells.map((cell) => (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  ))}
                 </tr>
               );
             })}
           </tbody>
+
           <tfoot>
             {footerGroups.map((footerGroup, index) => (
               <tr key={index} {...footerGroup.getFooterGroupProps()}>
@@ -141,7 +136,7 @@ const PaginationTable = (props) => {
         </table>
       </div>
       <div className="pagination-controls">
-        <span>
+        <span className="page-num">
           Page{""}
           <strong>
             {pageIndex + 1}
@@ -150,6 +145,7 @@ const PaginationTable = (props) => {
         </span>
 
         <select
+          className="pageNum-dropdown"
           value={pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
         >
@@ -160,22 +156,24 @@ const PaginationTable = (props) => {
           ))}
         </select>
 
-        <span>
-          | Go to page:{" "}
+        <span className="span-goto">
+          Go to page:{" "}
           <input
             type="number"
-            defaultValue={pageIndex + 1}
+            value={pageIndex + 1}
             onChange={(e) => {
-              const pageNumber = e.target.value
-                ? Number(e.target.value) - 1
-                : 0;
-              gotoPage(pageNumber);
+              const inputPage = e.target.value
+                ? parseInt(e.target.value, 10)
+                : 1;
+              const newPage = Math.min(Math.max(1, inputPage), pageCount);
+              gotoPage(newPage - 1);
             }}
             style={{ width: "50px" }}
+            disabled={!canPreviousPage && pageIndex === -1}
           />
         </span>
 
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+        <button onClick={() => gotoPage(0)} disabled={pageIndex === 0}>
           {"<<"}
         </button>
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
@@ -184,7 +182,10 @@ const PaginationTable = (props) => {
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           Next
         </button>
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+        <button
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={pageIndex === pageCount - 1}
+        >
           {">>"}
         </button>
       </div>
