@@ -24,7 +24,7 @@ const pieChartsInfo = async (req, res) => {
       },
     ]);
 
-    // Ensure that all categories are present in the result
+    
     const categories = ["men's clothing", 'jewelery', 'electronics', "women's clothing"];
     const pieChartData = categories.map((category) => ({
       category,
