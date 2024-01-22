@@ -6,9 +6,11 @@ const combinedInfoAPI= async (req, res) => {
 
       const { month } = req.query;
 
-      const matchStage = month ? month : {};
-      
-      const result = await Product.find({matchStage})
+      const matchStage = month ? month : "";
+      const result = await Product.find({})
+      if (month){
+        const result = await Product.find({month})
+      }
   
       res.status(200).json({ success: true, result });
     } catch (error) {
